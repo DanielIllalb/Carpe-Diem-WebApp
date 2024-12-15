@@ -1,0 +1,23 @@
+a {
+   color: #6c757d; 
+}
+a:hover{
+    text-decoration: underline;
+    color: black;
+    transition: color 0.5s;
+}
+
+img{
+    width: 30%;
+    height: auto;
+
+}
+
+button{
+    color: #6c757d;
+}
+
+button:hover{
+    color: black;
+    transition: color 0.5s;
+}

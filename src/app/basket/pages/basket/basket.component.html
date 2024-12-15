@@ -1,0 +1,33 @@
+<div class="container-fluid d-flex justify-content-center py-5">
+  <section class="card shadow border w-75 mt-4" *ngIf="basketClothes.length > 0;else basketEmpty">
+    <article>
+     <div *ngFor="let cloth of basketClothes">
+      <section class="row py-4 px-4">
+        <img class="col-2" src="assets/images/clothes/{{cloth.image}}.jpg" width="10%" alt="">
+        <article class="col-5">
+          <p class="fs-6"><strong>Nombre del producto: </strong>{{cloth.name}}</p>
+          <p class="fs-6"><strong>Precio:</strong> {{cloth.price}}€</p>
+          <p *ngIf="selectedSize" class="fs-6"><strong>Talla: </strong> {{selectedSize}} </p>
+          <p *ngIf="selectedQuantity" class="fs-6"><strong>Cantidad: </strong> {{selectedQuantity}} </p>
+          <button 
+          class="btn btn-outline-dark" 
+          (click)="deleteToCart(cloth.id)">Eliminar producto del carrito</button>
+        </article>
+      </section>
+     </div> 
+    </article>
+  </section>
+    
+    <ng-template #basketEmpty>
+      <section class="d-flex justify-content-center basket-empty">
+        <article class="py-4 w-75">
+          <h1 class="text-center text-danger mb-2"><strong>¡VAYA!</strong></h1>
+          <h3 class="text-center text-secondary">¡PARECE QUE TU CESTA ESTÁ UN POCO VACÍA!</h3>
+          <div class="d-flex justify-content-center">
+            <img src="assets/basket_empty.png" class="w-25" alt="">
+          </div>
+          <p class="text-center text-dark fs-6 mt-4">¡No seas Tímido y dale ahora un nuevo look a tu vida!</p>
+        </article>
+      </section>
+    </ng-template>
+</div>

@@ -1,0 +1,12 @@
+.card {
+    height: 100%; /* Asegura que las tarjetas ocupen toda la altura disponible */
+    display: flex;
+    flex-direction: column; /* Mantiene la estructura interna */
+    transition: 1.4s;
+  }
+  
+  .card img {
+    height: 600px; /* Ajusta esta altura según tu diseño */
+    width: 100%; /* Asegura que las imágenes llenen el ancho */
+    object-fit: cover; /* Ajusta las imágenes sin deformarlas */
+  }

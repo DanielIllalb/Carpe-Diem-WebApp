@@ -1,0 +1,125 @@
+<div class="container py-4 mt-3">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="form-container card shadow p-4">
+    <h3 class="text-success mb-4"><strong>AÑADIR NUEVA PRENDA:</strong></h3>
+      <!-- Nombre -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre:</label>
+        <input 
+          id="name" 
+          type="text" 
+          class="form-control" 
+          formControlName="name"
+          placeholder="Ingrese el nombre de la prenda" />
+        <div *ngIf="formulario.get('name')?.invalid && formulario.get('name')?.touched" class="form-text text-danger">
+          El nombre es requerido y debe tener al menos 3 caracteres.
+        </div>
+      </div>
+  
+      <!-- Imagen -->
+      <div class="mb-3">
+        <label for="image" class="form-label">Imagen (URL):</label>
+        <input 
+          id="image" 
+          type="text" 
+          class="form-control" 
+          formControlName="image"
+          placeholder="Ingrese la URL de la imagen" />
+        <div *ngIf="formulario.get('image')?.invalid && formulario.get('image')?.touched" class="form-text text-danger">
+          Proporcione una URL válida.
+        </div>
+      </div>
+  
+      <!-- Precio -->
+      <div class="mb-3">
+        <label for="price" class="form-label">Precio:</label>
+        <input 
+          id="price" 
+          type="number" 
+          class="form-control" 
+          formControlName="price"
+          placeholder="Ingrese el precio" />
+        <div *ngIf="formulario.get('price')?.invalid && formulario.get('price')?.touched" class="form-text text-danger">
+          El precio debe ser mayor a 0.
+        </div>
+      </div>
+  
+      <!-- Género -->
+      <div class="mb-3">
+        <label for="gender" class="form-label">Género:</label>
+        <select id="gender" class="form-select" formControlName="gender">
+          <option value="" disabled>Seleccione género</option>
+          <option value="woman">Mujer</option>
+          <option value="man">Hombre</option>
+        </select>
+        <div *ngIf="formulario.get('gender')?.invalid && formulario.get('gender')?.touched" class="form-text text-danger">
+          Seleccione un género.
+        </div>
+      </div>
+  
+      <!-- Tipo de prenda -->
+      <div class="mb-3">
+        <label for="type" class="form-label">Tipo de prenda:</label>
+        <select id="type" class="form-select" formControlName="type">
+          <option value="" disabled>Seleccione el tipo de prenda</option>
+          <option value="man-coats">Abrigos Hombre</option>
+          <option value="man-suits">Trajes Hombre</option>
+          <option value="man-pants">Pantalones Hombre</option>
+          <option value="man-shirts">Camisas Hombre</option>
+          <option value="man-sweaters">Jerseys Hombre</option>
+          <option value="man-t-shirts">Camisetas Hombre</option>
+          <option value="women-coats">Abrigos Mujer</option>
+          <option value="garments">Vestidos</option>
+          <option value="women-pants">Pantalones Mujer</option>
+          <option value="women-shirts">Camisas Mujer</option>
+          <option value="women-sweaters">Jerseys Mujer</option>
+          <option value="women-t-shirts">Camisetas Mujer</option>
+        </select>
+        <div *ngIf="formulario.get('type')?.invalid && formulario.get('type')?.touched" class="form-text text-danger">
+          Seleccione un tipo de prenda.
+        </div>
+      </div>
+  
+      <!-- Descripción -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Descripción:</label>
+        <textarea 
+          id="description" 
+          class="form-control" 
+          formControlName="description" 
+          placeholder="Ingrese una descripción"></textarea>
+        <div *ngIf="formulario.get('description')?.invalid && formulario.get('description')?.touched" class="form-text text-danger">
+          La descripción es requerida y no debe exceder los 500 caracteres.
+        </div>
+      </div>
+  
+      <!-- Tamaños disponibles -->
+      <div class="mb-3">
+        <label class="form-label">Tamaños disponibles:</label>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-outline-primary" (click)="addSize('XS')">Añadir XS</button>
+          <button type="button" class="btn btn-outline-primary" (click)="addSize('S')">Añadir S</button>
+          <button type="button" class="btn btn-outline-primary" (click)="addSize('M')">Añadir M</button>
+          <button type="button" class="btn btn-outline-primary" (click)="addSize('L')">Añadir L</button>
+          <button type="button" class="btn btn-outline-primary" (click)="addSize('XL')">Añadir XL</button>
+          <button type="button" class="btn btn-outline-primary" (click)="addSize('XXL')">Añadir XXL</button>
+        </div>
+      </div>
+  
+      <!-- Cantidades -->
+      <div formGroupName="quantity" class="mb-3">
+        <div *ngFor="let size of formulario.get('sizes')?.value" class="d-flex align-items-center mb-2">
+          <label class="form-label me-2">{{ size }}</label>
+          <input 
+            type="number" 
+            class="form-control w-25" 
+            [formControlName]="size" 
+            placeholder="Cantidad" />
+          <button type="button" class="btn btn-outline-danger ms-2" (click)="removeSize(size)">X</button>
+        </div>
+      </div>
+  
+      <!-- Botón de envío -->
+      <button type="submit" class="btn btn-success w-100" [disabled]="formulario.invalid">Añadir prenda</button>
+    </form>
+  </div>
+  

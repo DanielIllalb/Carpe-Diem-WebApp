@@ -1,0 +1,56 @@
+<div class="container py-4">
+  <div *ngIf="selectedCloth" class="edit-container">
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <img
+          class="img-fluid mb-3"
+          [src]="'assets/images/clothes/' + selectedCloth.image + '.jpg'"
+          alt="{{ selectedCloth.name }}"
+        />
+      </div>
+    
+    <!-- Tallas existentes -->
+    
+  <div class="col-12 col-lg-6 align-self-center">
+    <h4>Modificar Tallas</h4>
+    <p>{{ selectedCloth.name }}</p>
+    <div *ngFor="let size of selectedCloth.sizes" class="size-row mb-2">
+      <label for="size-{{ size }}">Talla {{ size }}</label>
+      <input
+        id="size-{{ size }}"
+        type="number"
+        [(ngModel)]="selectedCloth.quantity[size]"
+        min="0"
+        class="form-control"
+        placeholder="Cantidad"
+      />
+    </div>
+
+    <!-- Añadir nueva talla -->
+    <div class="new-size-row mt-3">
+      <p>Añadir nuevas tallas:</p>
+      <input
+        type="text"
+        [(ngModel)]="newSize"
+        class="form-control mb-2"
+        placeholder="Nueva talla (e.g., S, M, L)"
+      />
+      <input
+        type="number"
+        [(ngModel)]="newQuantity"
+        min="0"
+        class="form-control mb-2"
+        placeholder="Cantidad"
+      />
+      <button class="btn btn-outline-primary w-100 mb-2" (click)="addSizeToSelectedCloth()">Añadir Talla</button>
+    </div>
+  
+    <button class="btn btn-primary w-100 mb-2" (click)="saveSizesAndQuantities()">Guardar Cambios</button>
+    <button class="btn btn-secondary w-100" routerLink="/clothes/women/women-coats">Cancelar</button>
+    </div>
+  </div> 
+    
+  </div>
+</div>
+
+  

@@ -1,0 +1,28 @@
+.basket-empty {
+    animation-name: basketempty-animation;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+  }
+
+  @keyframes basketempty-animation {
+    0% {
+      opacity: 0;
+    }
+
+    25% {
+      opacity: 0.2;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+
+    75% {
+      opacity: 0.7;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }

@@ -1,0 +1,75 @@
+<div class="container py-5 d-sm-block d-lg-flex g-3 clothes-details" *ngIf="suitDetails; else loading">
+    <div class="row">
+      <div class="col me-4">
+        <img
+          class="img-fluid rounded"
+          [src]="'assets/images/clothes/' + suitDetails.image + '.jpg'"
+          alt="{{ suitDetails.name }}"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h1 class="text-center text-lg-start">{{ suitDetails.name.toUpperCase() }}</h1>
+        <p class="fs-1 text-success text-center text-lg-start"><strong>{{ suitDetails.price }}€</strong></p>
+        <hr />
+        <p class="fs-5 text-secondary text-center text-lg-start">{{ suitDetails.description }}</p>
+        <hr />
+        <form>
+          <!-- Selector de talla -->
+          <div class="row align-items-center mb-3">
+            <p class="col-auto"><strong>Guía de Tallas:</strong></p>
+            <select
+              class="form-select col"
+              aria-label="Selección de Tallas"
+              [(ngModel)]="selectedSize"
+              (change)="onSelectionChange()"
+              name="size"
+            >
+              <option value="" disabled selected>Seleccione una talla</option>
+              <option *ngFor="let size of suitDetails.sizes" [value]="size">
+                {{ size }}
+              </option>
+            </select>
+          </div>
+  
+          <!-- Selector de cantidad -->
+          <div class="row align-items-center mb-3">
+            <label class="form-label me-2" for="inputCantidad"><strong>Cantidad:</strong></label>
+            <input
+              type="number"
+              class="form-control col-auto"
+              id="inputCantidad"
+              [(ngModel)]="selectedQuantity"
+              (input)="onSelectionChange()"
+              name="quantity"
+              [max]="selectedSize ? suitDetails.quantity[selectedSize] : 0"
+              [min]="1"
+              placeholder="1"
+            />
+          </div>
+  
+          <!-- Mensaje de validación -->
+          <p *ngIf="selectedSize && selectedQuantity && selectedQuantity > suitDetails.quantity[selectedSize]" class="text-danger">
+            La cantidad seleccionada excede la disponibilidad actual.
+          </p>
+  
+          <!-- Botón Añadir al carrito -->
+          <button
+            type="button"
+            class="btn btn-outline-dark w-100"
+            [disabled]="isButtonDisabled()"
+            (click)="addToCart()"
+          >
+            Añadir al carrito
+          </button>
+        </form>
+        <button (click)="returnToMainPage()" class="btn btn-outline-primary mt-2 w-100">Volver a la página principal</button>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #loading>
+    <p>Cargando detalles del producto...</p>
+  </ng-template>
+  

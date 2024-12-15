@@ -1,0 +1,28 @@
+.edit-container {
+    animation-name: edit-animation;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+  }
+
+  @keyframes edit-animation {
+    0% {
+      opacity: 0;
+    }
+
+    25% {
+      opacity: 0.2;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+
+    75% {
+      opacity: 0.7;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }

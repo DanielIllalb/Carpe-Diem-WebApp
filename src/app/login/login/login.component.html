@@ -1,0 +1,29 @@
+<section class="container py-4 d-flex justify-content-center"> 
+    <form [formGroup]="formLogin" (ngSubmit)="onSubmit()" class="card shadow p-4 w-40">
+        
+        <h3 class="text-center mb-4"> Bienvenido </h3>
+
+        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+            {{ errorMessage }}
+        </div>
+        
+        <div class="mb-4">
+            <label for="email" class="form-label">Correo Electrónico: </label>
+            <input type="email" id="inputEmail" class="form-control" formControlName="email">
+        </div>
+    
+        <div class="mb-4">
+            <label for="password" class="form-label">Contraseña: </label>
+            <input type="password" id="inputPassword" class="form-control" formControlName="password">
+            <p class="mt-2 text-secondary">¿No tienes ninguna cuenta? <a routerLink="/register">Regístrate aquí.</a></p>
+        </div>
+    
+        <div>
+            <button type="submit" class="btn btn-outline-dark me-2">Enviar</button>
+            <button class="btn btn-outline-primary" (click)="onClick()">Iniciar Sesión con Google</button>
+        </div>
+    </form>
+    
+</section>
+
+
