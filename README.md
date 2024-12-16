@@ -55,8 +55,9 @@ Asegúrate de tener instalado lo siguiente antes de comenzar:
 
 - Node.js(v16 o superior)
 - Angular CLI (v17)
-
-  npm install -g @angular/cli
+  ```
+    npm install -g @angular/cli
+  ```
 - Una cuenta en Firebase y un proyecto configurado.
 
 ## Instalación
